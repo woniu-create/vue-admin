@@ -4,6 +4,13 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import './assets/css/global.css'
+
+import axios from 'axios'
+// axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+axios.defaults.baseURL = 'http://timemeetyou.com:8889/api/private/v1/'
+// axios.defaults.baseURL = 'http://rambuild.cn:8888/api/private/v1'
+Vue.prototype.$http = axios
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
