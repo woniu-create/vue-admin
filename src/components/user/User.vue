@@ -30,7 +30,7 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="180px">
-             <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+             <el-button type="primary" icon="el-icon-edit" size="mini" @click="editdialogVisible = true"></el-button>
              <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
              <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable="false">
                <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
@@ -41,6 +41,8 @@
     :page-sizes="[1, 2, 4, 10]" :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
     </el-pagination>
     </el-card>
+
+    <!-- 添加用户的对话框 -->
     <el-dialog title="提示" :visible.sync="addDialogVisible"  width="50%" @close="addDialogClosed">
       <!-- 内容主体区 -->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
@@ -55,6 +57,15 @@
       <el-button type="primary" @click="addUser">确 定</el-button>
      </span>
    </el-dialog>
+
+   <!-- 编辑用户对话框 -->
+   <el-dialog title="提示" :visible.sync="editdialogVisible" width="50%">
+     <span>这是一段信息</span>
+     <span slot="footer" class="dialog-footer">
+    <el-button @click="editdialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="editdialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
    </div>
 </template>
 
@@ -85,6 +96,7 @@ export default {
       userList: [],
       total: 0,
       addDialogVisible: false,
+      editdialogVisible: false,
       addForm: {
         username: '',
         password: '',
