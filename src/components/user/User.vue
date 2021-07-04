@@ -41,7 +41,7 @@
     :page-sizes="[1, 2, 4, 10]" :page-size="queryInfo.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
     </el-pagination>
     </el-card>
-    <el-dialog title="提示" :visible.sync="addDialogVisible"  width="50%">
+    <el-dialog title="提示" :visible.sync="addDialogVisible"  width="50%" @close="addDialogClosed">
       <!-- 内容主体区 -->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
       <el-form-item label="用户名" prop="username"> <el-input v-model="addForm.name"></el-input></el-form-item>
@@ -141,6 +141,9 @@ export default {
         return this.$message.error('更新用户状态失败')
       }
       return this.$message.success('更新用户状态成功')
+    },
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields()
     }
   }
 }
